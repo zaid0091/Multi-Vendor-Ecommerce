@@ -2,6 +2,9 @@ from pathlib import Path
 from datetime import timedelta
 from decouple import config, Csv
 
+# Optional helpers for production deployments
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ---------------------------------------------------------------------------
@@ -78,6 +81,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# If a `DATABASE_URL` env var is provided (e.g. from Heroku/Supabase/Fly.io),
+# override the default sqlite database with the parsed URL.
+db_url = config('DATABASE_URL', default='')
+if db_url:
+    DATABASES['default'] = dj_database_url.parse(db_url, conn_max_age=600)
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -214,6 +223,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# When deploying to a platform that serves static files, collectstatic will
+# populate `STATIC_ROOT`. WhiteNoise will be used in middleware to serve
+# static files efficiently from the same process.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Use WhiteNoise compressed manifest storage in production for caching.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
