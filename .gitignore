@@ -1,0 +1,55 @@
+# Repository-wide ignores
+
+# Node
+**/node_modules/
+**/dist/
+**/build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.egg
+.env
+.env.*
+.venv/
+venv/
+ENV/
+
+# Databases
+*.sqlite3
+db.sqlite3
+
+# Django
+local_settings.py
+media/
+staticfiles/
+
+# Tests / coverage
+.pytest_cache/
+coverage/
+.coverage
+
+# Packaging
+dist/
+build/
+
+# IDEs and editors
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
+
+# Misc
+*.tgz
+
+# Frontend-specific (also covered in frontend/.gitignore)
+**/.parcel-cache
+**/.cache
+**/.vite
+**/out

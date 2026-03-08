@@ -1,0 +1,43 @@
+# Backend (Python / Django) ignores
+
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenv
+.venv/
+venv/
+ENV/
+
+# Environment
+.env
+.env.*
+local_settings.py
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# Media
+media/
+
+# Django
+staticfiles/
+
+# Testing
+.pytest_cache/
+coverage/
+.coverage
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Misc
+*.egg-info/
+*.egg
+pip-wheel-metadata/
